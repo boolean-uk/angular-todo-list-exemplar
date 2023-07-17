@@ -23,7 +23,10 @@ export class TodoService {
 
   async updateTodo(updatedTodo: Todo): Promise<Todo> {
     const todo = await firstValueFrom(
-      this.http.patch<Todo>(`${environment.apiUrl}/todo`, updatedTodo)
+      this.http.put<Todo>(
+        `${environment.apiUrl}/todo/${updatedTodo.id}`,
+        updatedTodo
+      )
     );
 
     return todo;
